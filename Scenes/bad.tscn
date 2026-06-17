@@ -1,0 +1,95 @@
+[gd_scene format=3 uid="uid://d1dmp37gyj8iy"]
+
+[ext_resource type="Script" uid="uid://ymb4sfylhmlo" path="res://Script/bad.gd" id="1_yuow8"]
+[ext_resource type="Texture2D" uid="uid://cqn23etgy14x" path="res://AssetBundle/Sprites/Slimer.png" id="2_65kyp"]
+[ext_resource type="Script" uid="uid://d3hq7k5ibm02n" path="res://Script/health_bar.gd" id="3_hb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4071q"]
+atlas = ExtResource("2_65kyp")
+region = Rect2(0, 0, 41, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ylpr7"]
+atlas = ExtResource("2_65kyp")
+region = Rect2(41, 0, 41, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rgcv0"]
+atlas = ExtResource("2_65kyp")
+region = Rect2(82, 0, 41, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_53k4e"]
+atlas = ExtResource("2_65kyp")
+region = Rect2(123, 0, 41, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_upao0"]
+atlas = ExtResource("2_65kyp")
+region = Rect2(164, 0, 41, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oalc6"]
+atlas = ExtResource("2_65kyp")
+region = Rect2(205, 0, 41, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hb5kp"]
+atlas = ExtResource("2_65kyp")
+region = Rect2(246, 0, 41, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rv2nt"]
+atlas = ExtResource("2_65kyp")
+region = Rect2(287, 0, 41, 38)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_x4kjc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4071q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ylpr7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rgcv0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_53k4e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_upao0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oalc6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hb5kp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rv2nt")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 12.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bscdg"]
+radius = 15.033297
+
+[node name="bad" type="CharacterBody2D" node_paths=PackedStringArray("animator")]
+script = ExtResource("1_yuow8")
+animator = NodePath("AnimatedSprite2D")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_x4kjc")
+animation = &"walk"
+frame_progress = 0.29575443
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 9)
+shape = SubResource("CircleShape2D_bscdg")
+
+[node name="HealthBar" type="Control" parent="."]
+script = ExtResource("3_hb")
+layout_mode = 0
+offset_left = -40.0
+offset_top = -30.0
+offset_right = 40.0
+offset_bottom = -22.0
+max_health = 5
+bar_color = Color(1, 0, 0, 1)

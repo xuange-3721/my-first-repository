@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://bc2hj484lfn7w"]
+
+[ext_resource type="Texture2D" uid="uid://bbwgyg8fg1228" path="res://AssetBundle/Sprites/ForestBackground.png" id="1_acj3m"]
+[ext_resource type="PackedScene" uid="uid://d1en8khts6g4a" path="res://Scenes/charactor.tscn" id="2_p8qtn"]
+[ext_resource type="PackedScene" uid="uid://d1dmp37gyj8iy" path="res://Scenes/bad.tscn" id="3_q30bw"]
+[ext_resource type="Script" uid="uid://crp67kt5cevwm" path="res://Script/game_manager.gd" id="4_gm"]
+[ext_resource type="PackedScene" uid="uid://b4jq8l6ico03p" path="res://Scenes/bullet.tscn" id="5_bullet"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_q30bw"]
+
+[node name="ABGame" type="Node2D" unique_id=620853049]
+
+[node name="ForestBackground1" type="Sprite2D" parent="." unique_id=35023450]
+position = Vector2(-120, 0)
+texture = ExtResource("1_acj3m")
+metadata/_edit_lock_ = true
+
+[node name="ForestBackground2" type="Sprite2D" parent="." unique_id=720960140]
+position = Vector2(120, 0)
+texture = ExtResource("1_acj3m")
+metadata/_edit_lock_ = true
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=591148704]
+zoom = Vector2(2.46, 2.46)
+metadata/_edit_lock_ = true
+
+[node name="player" parent="Camera2D" unique_id=1443835836 instance=ExtResource("2_p8qtn")]
+position = Vector2(-14, 85)
+knockback_force = 200.0
+bullet_scene = ExtResource("5_bullet")
+
+[node name="bad" parent="Camera2D" unique_id=113134691 instance=ExtResource("3_q30bw")]
+position = Vector2(142, 74)
+move_speed = 30.0
+knockback_cooldown = 0.2
+self_pushback = 10.0
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1211281854]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=428981011]
+position = Vector2(0, 131.705)
+shape = SubResource("WorldBoundaryShape2D_q30bw")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D" unique_id=1884808549]
+position = Vector2(0, 24)
+scale = Vector2(-1, -1)
+shape = SubResource("WorldBoundaryShape2D_q30bw")
+
+[node name="GameManager" type="CanvasLayer" parent="." unique_id=2037296236]
+script = ExtResource("4_gm")
+bad_scene = ExtResource("3_q30bw")
